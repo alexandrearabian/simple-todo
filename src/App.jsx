@@ -1,59 +1,51 @@
-import { useEffect, useState } from "react"
-import { db } from "/Users/alex/Documents/MisProyectos/simple-todo/database/FirebaseConfig.jsx";
-import { collection, addDoc, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, getDoc } from "firebase/firestore";
-import Task from "./components/Task";
-import TaskForm from "./components/TaskForm";
-import TaskDetail from "./components/TaskDetail";
-
+// src/App.js
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import ToDoList from './ToDoList'; // Import your main page component
+import { auth } from '/Users/alex/Documents/MisProyectos/simple-todo/src/firebase/FirebaseConfig.jsx';
+import Login from './components/Login';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-
-  const [selectedTask, setSelectedTask] = useState(null);
-
-  const handleSelectedTask = (task) => {
-    setSelectedTask(task);
-  }
-
-  const handleClose = () => {
-    setSelectedTask(null);
-  }
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const q = query(collection(db, "tasks"), orderBy("createdAt", "asc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const tasksData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setTasks(tasksData);
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);  // Set the authenticated user
+      } else {
+        setUser(null);  // No user is logged in
+      }
+      setLoading(false); // Done checking authentication
     });
+
     return () => unsubscribe();
-  }, [])
+  }, []);
 
-  return (
-    <>
-      <h1>
-        Welcome to your simple <span style={{ color: 'var(--mainColor)' }}>to-do </span>list!
-      </h1>
-      <div className="todolist">
-
-        <div >
-          <TaskForm />
-          <ul className="tasks">
-            {tasks.map((task) => (
-              <Task key={task.id} task={task} onTaskClick={() => handleSelectedTask(task)} />
-            ))}
-          </ul>
-        </div>
-        {selectedTask && (
-          <TaskDetail key={selectedTask.id} task={selectedTask} closeDetail={handleClose} />
-
-        )}
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <FontAwesomeIcon icon={faSpinner} spin style={{ fontSize: '150px', width: '110px' }} />
       </div>
-
-    </>
-  )
+    );
+  }
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={user ? <Navigate to="/todolist" /> : <Login />} />
+        <Route path="/todolist" element={<ProtectedRoute user={user}><ToDoList /></ProtectedRoute>} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+function ProtectedRoute({ user, children }) {
+  if (!user) {
+    return <Navigate to="/" />;
+  }
+  return children;
+}
+
+export default App;

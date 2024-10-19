@@ -2,7 +2,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useState } from 'react';
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "/Users/alex/Documents/MisProyectos/simple-todo/database/FirebaseConfig.jsx";
+import { db } from "../firebase/FirebaseConfig.jsx";
 
 export default function TaskDetail({ task, closeDetail }) {
 
@@ -84,7 +84,7 @@ export default function TaskDetail({ task, closeDetail }) {
                 position: 'absolute',
                 bottom: '20px',
                 left: '20px',
-            }}><stron>Status: </stron>{task.completed ? 'Completed ✅' : 'Pending ⌛️'}</p>
+            }}><strong>Status: </strong>{task.completed ? 'Completed ✅' : 'Pending ⌛️'}</p>
 
         </div>
     );
