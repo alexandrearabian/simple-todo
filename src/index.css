@@ -99,6 +99,7 @@ button {
   font-family: inherit;
   cursor: pointer;
   background-color: var(--darker);
+  color: inherit;
 
   transition: border-color 0.25s;
 
@@ -545,6 +546,35 @@ li.task.done {
     padding: 0;
   }
 
+  li.task {
+    display: flex;
+    flex-direction: row;
+    backdrop-filter: blur(40px);
+    border-radius: 10px;
+    width: 60vw;
+    padding: 8px 0 8px 0;
+    align-items: center;
+    justify-content: space-between;
+    transition: opacity .3s linear;
+    border: 2px solid var(--grey);
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+  }
+  .task-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    width: 60vw;
+    outline: none;
+    border: 3px solid var(--white);
+    padding: 20px;
+    /* Adds inner space */
+    box-sizing: border-box;
+    /* Ensures padding doesn't affect width */
+    margin: 1.25rem auto;
+  }
   .todolist {
     display: flex;
     justify-content: space-evenly;
