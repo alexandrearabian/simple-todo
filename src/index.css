@@ -101,6 +101,12 @@ button {
   background-color: var(--darker);
 
   transition: border-color 0.25s;
+
+  appearance: none;
+  /* Removes default button styles in Safari and others */
+  -webkit-appearance: none;
+  /* Removes default button styles in iOS/Safari */
+  text-decoration: none;
 }
 
 button:hover {
@@ -206,18 +212,20 @@ li.task.done {
 
 .details {
   position: relative;
-  width: 500px;
+  width: 100px;
 }
 
 .task-detail {
-  position: inherit;
+
   overflow: hidden;
-  width: 33vw;
+  width: 40vw;
   height: 60vh;
   border: 2px solid var(--grey);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: 0;
   transform: translateX(100%);
   /* Start fully offscreen to the right */
@@ -226,8 +234,7 @@ li.task.done {
 
 .task-detail.show {
   opacity: 1;
-  transform: translateX(0);
-  /* Slide in smoothly */
+  transform: translateX(-35%);
 }
 
 .task-detail.closing {
@@ -443,11 +450,106 @@ li.task.done {
 }
 
 /* BURGER MENU from codepen.io */
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media (max-width: 850px) {
+  * {
+    box-sizing: border-box;
   }
 
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 4rem;
+    line-height: 1.1;
+    margin: 7rem 1rem 6rem 1rem;
+    max-width: 100%;
+    /* Prevents overflowing horizontally */
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.75rem;
+    line-height: 1.1;
+  }
+
+  .taskForm-and-tasks {
+    transition: transform 0.5s ease;
+    width: 100%;
+    max-width: 100%;
+    /* Ensure it stays within viewport */
+  }
+
+  .taskForm-and-tasks.slide-left {
+    transform: translateX(-20px);
+  }
+
+  .details {
+    width: 0;
+    max-width: 100%;
+    position: relative;
+    border: 2px solid var(--grey);
+  }
+
+  .task-detail {
+    position: absolute;
+    overflow: hidden;
+    height: 60vh;
+    width: 80vw;
+    border: 2px solid var(--grey);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+
+    opacity: 0;
+    transform: translateX(10%);
+    /* Start fully offscreen to the right */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .task-detail.show {
+    opacity: 1;
+    transform: translateX(-110%);
+    /* Slide in smoothly */
+  }
+
+  .task-detail.closing {
+    opacity: 0;
+    transform: translateX(10%);
+    /* Slide out smoothly */
+  }
+
+  .tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90vw;
+    height: 45vh;
+    max-height: 50vh;
+    overflow-y: auto;
+    list-style: none;
+    border-radius: 10px;
+    margin-top: 3.25rem;
+    padding: 0;
+  }
+
+  .todolist {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 100%;
+    /* Prevents horizontal overflow */
+  }
 }

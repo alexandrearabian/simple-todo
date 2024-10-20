@@ -79,6 +79,11 @@ export default function TaskDetail({ task, closeDetail, isVisible }) {
                         onChange={handleInput}
                         onBlur={handleSave}
                         autoFocus
+                        ref={(textarea) => {
+                            if (textarea) {
+                              textarea.selectionStart = textarea.selectionEnd = taskName.length;
+                            }
+                          }}
                         style={{
                             textAlign: 'inherit',
                             fontSize: 'inherit',
@@ -89,7 +94,8 @@ export default function TaskDetail({ task, closeDetail, isVisible }) {
                             resize: 'none',
                             outline: 'none',
                             overflow: 'hidden',
-                            padding: '0'
+                            padding: '0',
+                            width: '100%', // Make sure it takes up the full width
                         }}
                     />
                 </h2>
