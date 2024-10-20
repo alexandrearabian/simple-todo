@@ -496,7 +496,7 @@ li.task.done {
     width: 0;
     max-width: 100%;
     position: relative;
-    border: 2px solid var(--grey);
+    /* border: 2px solid var(--grey); */
   }
 
   .task-detail {
@@ -551,7 +551,7 @@ li.task.done {
     flex-direction: row;
     backdrop-filter: blur(40px);
     border-radius: 10px;
-    width: 60vw;
+    width: 75vw;
     padding: 8px 0 8px 0;
     align-items: center;
     justify-content: space-between;
@@ -566,7 +566,7 @@ li.task.done {
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    width: 60vw;
+    width: 75vw;
     outline: none;
     border: 3px solid var(--white);
     padding: 20px;
