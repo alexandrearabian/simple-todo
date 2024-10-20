@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import ToDoList from './ToDoList'; // Import your main page component
 import { auth } from '/Users/alex/Documents/MisProyectos/simple-todo/src/firebase/FirebaseConfig.jsx';

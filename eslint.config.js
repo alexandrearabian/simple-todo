@@ -4,13 +4,28 @@ import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
+const customGlobals = {
+  TomSelect: "readable",
+}
+
 export default [
   { ignores: ['dist'] },
   {
+
+    // env: {
+    //   browser: true,  // Recognize browser globals
+    //   es6: true,      // Enable ES6 features
+    //   node: true,     // Recognize Node.js globals
+    // },
     files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...customGlobals,
+        ...globals.browser,
+        ...globals.jquery,
+        ...globals.node,
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -33,6 +48,7 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      "react/prop-types": "off",
     },
   },
 ]

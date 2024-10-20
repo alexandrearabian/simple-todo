@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { db, auth } from "./firebase/FirebaseConfig.jsx";
 import { signOut } from "firebase/auth";
-import { collection, addDoc, onSnapshot, query, orderBy, where, updateDoc, doc, deleteDoc, getDoc } from "firebase/firestore";
+import { collection, onSnapshot, query, orderBy, where } from "firebase/firestore";
 import Task from "./components/Task.jsx";
 import TaskForm from "./components/TaskForm.jsx";
 import TaskDetail from "./components/TaskDetail.jsx";

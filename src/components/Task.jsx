@@ -1,7 +1,7 @@
 import Checkbox from "./Checkbox";
 import Trash from "./Trash";
 import { db, auth } from "../firebase/FirebaseConfig.jsx";
-import { collection, addDoc, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, getDoc } from "firebase/firestore";
+import { updateDoc, doc, deleteDoc, getDoc } from "firebase/firestore";
 
 export default function Task({ task, onTaskClick }) {
 
