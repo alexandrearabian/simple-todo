@@ -8,6 +8,7 @@ A simple Todo application built with React, allowing users to create, edit, and 
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Technologies Used](#technologies-used)
+  - [Website](#website)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Contributing](#contributing)
@@ -26,6 +27,10 @@ A simple Todo application built with React, allowing users to create, edit, and 
 - **Firebase Firestore** - NoSQL cloud database for real-time data storage.
 - **FontAwesome** - Icons for a better user interface.
 - **CSS** - For styling the application.
+
+## Website
+
+- Access `https://simple-todo-list-2ik.pages.dev/` to see the website.
 
 ## Installation
 
