@@ -2,7 +2,7 @@ import { faPowerOff, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-export default function BurgerMenu(handleLogout) {
+export default function BurgerMenu({handleLogout}) {
 
     return (
         <>
@@ -25,7 +25,7 @@ export default function BurgerMenu(handleLogout) {
                             <li>
                                 <FontAwesomeIcon icon={faGithub} style={{ marginRight: '10px' }} /> More cool stuff</li>
                         </a>
-                        <a href="#" onClick={handleLogout}>
+                        <a href="#" onClick={handleLogout()}>
                             <li>
                                 <FontAwesomeIcon icon={faPowerOff} style={{ marginRight: '10px' }} /> Logout
                             </li>
