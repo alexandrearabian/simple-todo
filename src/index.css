@@ -186,17 +186,27 @@ li.task {
   font-size: 1.25rem;
 }
 
+.name-area {
+  padding: 6px;
+  width: 80%;
+  text-align: center;
+}
+
 
 .svg-inline--fa {
-  font-size: 20px;
+  font-size: 1.3rem;
   color: var(--mainColor);
   background: none;
   border: none;
   cursor: pointer;
 }
 
-
 li.task.done {
+  opacity: 0.3;
+  box-sizing: border-box;
+}
+
+div.task.done {
   opacity: 0.3;
   box-sizing: border-box;
 }
@@ -230,7 +240,7 @@ li.task.done {
   opacity: 0;
   transform: translateX(100%);
   /* Start fully offscreen to the right */
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.1s ease;
 }
 
 .task-detail.show {
@@ -560,6 +570,7 @@ li.task.done {
     cursor: pointer;
     margin-bottom: 0.75rem;
   }
+
   .task-form {
     display: flex;
     flex-direction: column;
@@ -575,6 +586,7 @@ li.task.done {
     /* Ensures padding doesn't affect width */
     margin: 1.25rem auto;
   }
+
   .todolist {
     display: flex;
     justify-content: space-evenly;

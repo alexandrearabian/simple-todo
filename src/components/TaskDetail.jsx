@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useState, useEffect } from 'react';
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/FirebaseConfig.jsx";
+import Trash from './Trash.jsx';
+import Checkbox from './Checkbox.jsx';
 
-export default function TaskDetail({ task, closeDetail, isVisible }) {
-
+export default function TaskDetail({ task, closeDetail, isVisible, handleDeleteTask, handleCheckTask }) {
     const createdAt = task.createdAt ? task.createdAt.toDate().toLocaleDateString() : 'No date available';
     const [editMode, setEditMode] = useState(false);
     const [taskName, setTaskName] = useState(task.name);
@@ -14,19 +15,25 @@ export default function TaskDetail({ task, closeDetail, isVisible }) {
 
     useEffect(() => {
         if (isVisible) {
-            // Delay adding the show class to trigger the transition
             setTimeout(() => setIsMounted(true), 50); // Delay to ensure mount
         } else {
-            setIsMounted(false); // Remove the show class on hide
+            setIsMounted(false);
         }
     }, [isVisible]);
 
-
+    // Handle outside click with prioritization
     useEffect(() => {
         const handleClickOutside = (event) => {
-            // Check if the click was outside the TaskDetail
-            if (taskDetailRef.current && !taskDetailRef.current.contains(event.target)) {
-                closeDetail(); // Close if clicked outside
+            // List of classes/data attributes that should prevent closing the detail view
+            const prioritySelectors = ['.checkbox', '.trash', '.li.task'];
+
+            // Check if the click was outside the TaskDetail but not on priority elements
+            if (
+                taskDetailRef.current &&
+                !taskDetailRef.current.contains(event.target) &&
+                !prioritySelectors.some(selector => event.target.closest(selector))
+            ) {
+                closeDetail(); // Close if clicked outside without priority action
             }
         };
 
@@ -68,12 +75,17 @@ export default function TaskDetail({ task, closeDetail, isVisible }) {
     return (
         <div ref={taskDetailRef} className={`task-detail ${isMounted ? 'show' : ''}`}>
             {!editMode && (
-                <h2 onClick={handleEdit}>{taskName}</h2>
+                <h2 onClick={handleEdit} style={{
+                    position: 'relative',
+                    top: '-15px'
+                }}>{taskName}</h2>
             )}
 
             {editMode && (
-                <h2>
-
+                <h2 style={{
+                    position: 'relative',
+                    top: '-15px'
+                }}>
                     <textarea
                         value={taskName}
                         onChange={handleInput}
@@ -81,9 +93,9 @@ export default function TaskDetail({ task, closeDetail, isVisible }) {
                         autoFocus
                         ref={(textarea) => {
                             if (textarea) {
-                              textarea.selectionStart = textarea.selectionEnd = taskName.length;
+                                textarea.selectionStart = textarea.selectionEnd = taskName.length;
                             }
-                          }}
+                        }}
                         style={{
                             textAlign: 'inherit',
                             fontSize: 'inherit',
@@ -95,31 +107,37 @@ export default function TaskDetail({ task, closeDetail, isVisible }) {
                             outline: 'none',
                             overflow: 'hidden',
                             padding: '0',
-                            width: '100%', // Make sure it takes up the full width
+                            width: '100%',
                         }}
                     />
                 </h2>
             )}
 
-            <button style={{
+            <div style={{
                 position: 'absolute',
                 top: '20px',
-                right: '20px',
-            }}
-                className='close'
-                onClick={closeDetail}>
-                <FontAwesomeIcon icon={faXmark} />
-            </button>
-            <p style={{
+                right: '35px',
+            }}>
+                <FontAwesomeIcon icon={faXmark} onClick={closeDetail} style={{ fontSize: '2.5rem' }} />
+            </div>
+            <div style={{
                 position: 'absolute',
                 bottom: '20px',
                 right: '20px',
-            }}>{createdAt}</p>
-            <p style={{
+            }}>
+
+                <Trash onDelete={() => handleDeleteTask(task.id)} size='2rem' className="trash" />
+            </div>
+            <div style={{
                 position: 'absolute',
-                bottom: '20px',
+                top: '20px',
                 left: '20px',
-            }}><strong>Status: </strong>{task.completed ? 'Completed ✅' : 'Pending ⌛️'}</p>
+            }}
+                className={'task ' + (task.completed ? 'done' : '')}
+            >
+
+                <Checkbox onCheck={() => handleCheckTask(task.id)} status={task.completed} size='2rem' className="checkbox" />
+            </div>
 
         </div>
     );

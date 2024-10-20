@@ -2,25 +2,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
-import { useState } from 'react';
 
-export default function Checkbox({ onCheck }) {
+export default function Checkbox({ onCheck, status, size = '1.3rem' }) {
 
-  const [checked, setChecked] = useState(false);
 
   const handleCheked = () => {
     onCheck();
-    setChecked(!checked);
   }
 
 
   return (
-    <button className="checkbox" onClick={handleCheked}>
-      {!checked && (
-        <FontAwesomeIcon icon={faSquare} />
+    <button className="checkbox" onClick={handleCheked} >
+      {(!status) && (
+        <FontAwesomeIcon icon={faSquare} style={{ fontSize: size }} />
       )}
-      {checked && (
-        <FontAwesomeIcon style={{ backgroundColor: 'none' }} icon={faSquareCheck} />
+      {(status) && (
+        <FontAwesomeIcon style={{ backgroundColor: 'none', fontSize: size }} icon={faSquareCheck} />
       )}
     </button>
   );
