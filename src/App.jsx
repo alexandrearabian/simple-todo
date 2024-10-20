@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import ToDoList from './ToDoList'; // Import your main page component
-import { auth } from '/Users/alex/Documents/MisProyectos/simple-todo/src/firebase/FirebaseConfig.jsx';
+import { auth } from './firebase/FirebaseConfig.jsx';
 import Login from './components/Login';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
