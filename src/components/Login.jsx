@@ -53,9 +53,9 @@ function Login() {
                     <FontAwesomeIcon icon={faGoogle} />  Sign in with Google
                 </button>
 
-                <p onClick={() => setIsSignUp(!isSignUp)}>
+                {/* <p onClick={() => setIsSignUp(!isSignUp)}>
                     {isSignUp ? "Already have an account? Sign in." : "Don't have an account? Sign up."}
-                </p>
+                </p> */}
             </div>
         </div>
     );
