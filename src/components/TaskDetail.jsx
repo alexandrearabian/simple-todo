@@ -115,7 +115,7 @@ export default function TaskDetail({ task, closeDetail, isVisible, handleDeleteT
 
             <div style={{
                 position: 'absolute',
-                top: '20px',
+                top: '23px',
                 right: '35px',
             }}>
                 <FontAwesomeIcon icon={faXmark} onClick={closeDetail} style={{ fontSize: '2.5rem' }} />

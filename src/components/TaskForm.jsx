@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/FirebaseConfig.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function TaskForm() {
     const [taskName, setTaskName] = useState("");
@@ -35,14 +37,29 @@ export default function TaskForm() {
     };
 
     return (
-        <form onSubmit={handleAddTask}>
-            <input
-                className="task-form"
-                type="text"
-                value={taskName}
-                onChange={(e) => setTaskName(e.target.value)}
-                placeholder="+ Add task..."
-                required />
-        </form>
+        <div style={{
+            display: 'flex',
+            alignItems: "center",
+            justifyContent: "space-evenly"
+        }}>
+
+            <form onSubmit={handleAddTask}>
+                <input
+                    className="task-form"
+                    type="text"
+                    value={taskName}
+                    onChange={(e) => setTaskName(e.target.value)}
+                    placeholder="+ Add task..."
+                    required />
+            </form>
+            <button onClick={handleAddTask} style={{
+                height: '65px',
+                border: '3px solid var(--white)',
+                borderRadius: '15px'
+            }}>
+
+                <FontAwesomeIcon icon={faPlus} />
+            </button>
+        </div>
     )
 }

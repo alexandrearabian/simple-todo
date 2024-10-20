@@ -71,7 +71,7 @@ input {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  width: 35vw;
+  width: 30vw;
   outline: none;
   border: 3px solid var(--white);
   padding: 20px;
@@ -79,6 +79,7 @@ input {
   box-sizing: border-box;
   /* Ensures padding doesn't affect width */
   margin: 1.25rem auto;
+  background-color: var(--darker);
 }
 
 
@@ -513,7 +514,7 @@ div.task.done {
     position: absolute;
     overflow: hidden;
     height: 60vh;
-    width: 80vw;
+    width: 90vw;
     border: 2px solid var(--grey);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
@@ -577,7 +578,7 @@ div.task.done {
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    width: 75vw;
+    width: 55vw;
     outline: none;
     border: 3px solid var(--white);
     padding: 20px;
