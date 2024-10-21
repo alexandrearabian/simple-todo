@@ -57,7 +57,7 @@ function Login() {
 
 
 
-                <button className="sign-in-email" onClick={handleEmailAuth}>Sign Up</button>
+                <button className="sign-in-email" onClick={() => handleEmailAuth(email, password)}>Sign Up</button>
 
 
                 <button className="sign-in-google" onClick={signInWithGoogle}>
