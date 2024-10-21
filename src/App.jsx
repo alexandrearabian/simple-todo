@@ -33,6 +33,7 @@ function App() {
   }
   return (
     <Router>
+      <div className="ball" />
       <Routes>
         <Route path="/" element={user ? <Navigate to="/todolist" /> : <Login />} />
         <Route path="/todolist" element={<ProtectedRoute user={user}><ToDoList /></ProtectedRoute>} />

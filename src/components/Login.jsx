@@ -1,20 +1,34 @@
 // Login.jsx
 import { useState } from "react";
-import { signInWithGoogle, signInWithEmail, signUpWithEmail } from "../firebase/authentication"; // your auth methods
+import { signInWithGoogle } from "../firebase/authentication";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/FirebaseConfig.jsx";
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isSignUp, setIsSignUp] = useState(false);
 
-    const handleEmailSignIn = () => {
-        signInWithEmail(email, password);
-    };
-
-    const handleEmailSignUp = () => {
-        signUpWithEmail(email, password);
+    const handleEmailAuth = async (email, password) => {
+        try {
+            // Try signing in the user
+            await signInWithEmailAndPassword(auth, email, password);
+            console.log("User signed in successfully.");
+        } catch (error) {
+            if (error.code === 'auth/user-not-found') {
+                // If the user does not exist, sign them up
+                try {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                    console.log("User signed up successfully.");
+                } catch (signupError) {
+                    console.error("Error signing up: ", signupError.message);
+                }
+            } else {
+                // Handle other errors
+                console.error("Error signing in: ", error.message);
+            }
+        }
     };
 
     return (
@@ -43,14 +57,11 @@ function Login() {
 
 
 
-                {isSignUp ? (
-                    <button className="sign-in-email" onClick={handleEmailSignUp}>Sign Up</button>
-                ) : (
-                    <button className="sign-in-email" onClick={handleEmailSignIn}>Sign In</button>
-                )}
+                <button className="sign-in-email" onClick={handleEmailAuth}>Sign Up</button>
+
 
                 <button className="sign-in-google" onClick={signInWithGoogle}>
-                    <FontAwesomeIcon icon={faGoogle} />  Sign in with Google
+                    <FontAwesomeIcon icon={faGoogle} />  <span style={{ fontSize: 'large', color: 'var(--darker)' }}>Sign in with Google</span>
                 </button>
 
                 {/* <p onClick={() => setIsSignUp(!isSignUp)}>

@@ -143,7 +143,6 @@ function ToDoList() {
 
   return (
     <>
-      <div className="ball" />
       <BurgerMenu handleLogout={handleLogout} />
       <h1>
         What do you want to <span style={{ color: 'var(--mainColor)' }}>achieve</span> today...✨

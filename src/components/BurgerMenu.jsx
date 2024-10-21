@@ -2,7 +2,7 @@ import { faPowerOff, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-export default function BurgerMenu({handleLogout}) {
+export default function BurgerMenu({ handleLogout }) {
 
     return (
         <>
@@ -16,7 +16,7 @@ export default function BurgerMenu({handleLogout}) {
                     <span></span>
                     <span></span>
                     <ul id="menu">
-                        <a href="#">
+                        <a href="mailto:alexandre.arabian.j@gmail.com">
                             <li>
                                 <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '10px' }} /> Contact
                             </li>
