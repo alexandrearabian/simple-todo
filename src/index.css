@@ -91,6 +91,19 @@ input {
 
 }
 
+.add-task {
+  height: 65px;
+  border: 3px solid var(--white);
+  border-radius: 15px;
+}
+
+.add-task:hover,
+.add-task:focus,
+.add-task:focus-visible {
+  transition: border-color 0.25s;
+  border: 3px solid var(--mainColor);
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

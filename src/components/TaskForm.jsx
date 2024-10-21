@@ -52,11 +52,7 @@ export default function TaskForm() {
                     placeholder="+ Add task..."
                     required />
             </form>
-            <button onClick={handleAddTask} style={{
-                height: '65px',
-                border: '3px solid var(--white)',
-                borderRadius: '15px'
-            }}>
+            <button onClick={handleAddTask} className='add-task'>
 
                 <FontAwesomeIcon icon={faPlus} />
             </button>
