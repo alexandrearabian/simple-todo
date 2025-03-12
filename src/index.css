@@ -34,13 +34,14 @@ p {
   font-size: large;
 }
 
+html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
-  overflow-x: hidden;
-  /* Centers horizontally */
   min-width: 320px;
   height: 100vh;
   /* Full viewport height */
@@ -278,6 +279,12 @@ div.task.done {
   height: 90vh;
 }
 
+.container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 .email-section {
   display: flex;
   flex-direction: column;
@@ -445,7 +452,7 @@ div.task.done {
   padding: 50px;
   padding-top: 125px;
 
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   /* Slightly transparent background */
   backdrop-filter: blur(10px);
   /* Apply the blur effect */
@@ -453,7 +460,7 @@ div.task.done {
   /* For Safari compatibility */
 
   /* Soft, diffused borders using box-shadow */
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
   /* Blurred shadow around the menu */
 
   list-style-type: none;
