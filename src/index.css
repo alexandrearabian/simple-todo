@@ -488,6 +488,7 @@ div.task.done {
     padding: 0;
     display: flex;
     justify-content: center;
+    overflow: hidden;
     width: 100%;
     height: 100%;
   }
