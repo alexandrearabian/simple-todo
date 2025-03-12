@@ -5,15 +5,14 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  --mainColor: #FF74B1;
-  --mainLighter: #FF8C8B;
-  --mainDarker: #F46FD7;
+  --mainColor: #ff74b1;
+  --mainLighter: #ff8c8b;
+  --mainDarker: #f46fd7;
   --white: rgba(255, 255, 255, 0.87);
-  --grey: rgba(255, 255, 255, 0.50);
+  --grey: rgba(255, 255, 255, 0.5);
   --dark: #292929;
   --darker: #131313;
   background-color: var(--dark);
-
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -82,13 +81,11 @@ input {
   background-color: var(--darker);
 }
 
-
 .task-form:hover,
 .task-form:focus,
 .task-form:focus-visible {
   transition: border-color 0.25s;
   border: 3px solid var(--mainColor);
-
 }
 
 .add-task {
@@ -190,7 +187,7 @@ li.task {
   padding: 8px 0 8px 0;
   align-items: center;
   justify-content: space-between;
-  transition: opacity .3s linear;
+  transition: opacity 0.3s linear;
   border: 2px solid var(--grey);
   cursor: pointer;
   margin-bottom: 0.75rem;
@@ -206,7 +203,6 @@ li.task {
   text-align: center;
 }
 
-
 .svg-inline--fa {
   font-size: 1.3rem;
   color: var(--mainColor);
@@ -214,8 +210,6 @@ li.task {
   border: none;
   cursor: pointer;
 }
-
-
 
 li.task.done {
   opacity: 0.3;
@@ -243,7 +237,6 @@ div.task.done {
 }
 
 .task-detail {
-
   overflow: hidden;
   width: 40vw;
   height: 60vh;
@@ -290,16 +283,16 @@ div.task.done {
   width: 80vw;
   max-width: 500px;
   justify-content: center;
+  gap: 10px;
   align-items: center;
   /* border:1px solid white; */
   margin: auto;
-
 }
 
 .sign-in-google {
-  margin-top: 3rem;
   height: 8vh;
-  width: 20vw;
+  width: 200px;
+
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -315,18 +308,17 @@ div.task.done {
 }
 
 .sign-in-email {
-  margin-top: 3rem;
+  margin-top: 1rem;
   height: 8vh;
-  width: 20vw;
+  width: 200px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
 .input-email {
-  width: 30vw;
+  width: 200px;
   transition: border-color 0.25s;
-
 }
 
 .input-email:hover {
@@ -353,9 +345,7 @@ div.task.done {
   transform: translateX(-50%);
 }
 
-
 /* BURGER MENU from codepen.io */
-
 
 #menuToggle {
   display: block;
@@ -380,7 +370,6 @@ div.task.done {
   color: var(--mainColor);
 }
 
-
 #menuToggle input {
   display: block;
   width: 40px;
@@ -399,8 +388,6 @@ div.task.done {
   -webkit-touch-callout: none;
 }
 
-
-
 /*
  * Just a quick hamburger
  */
@@ -418,9 +405,8 @@ div.task.done {
 
   transform-origin: 4px 0px;
 
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    opacity 0.55s ease;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
 
 #menuToggle span:first-child {
@@ -435,21 +421,20 @@ div.task.done {
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-#menuToggle input:checked~span {
+#menuToggle input:checked ~ span {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
   background: var(--mainColor);
 }
 
-#menuToggle input:checked~span:nth-last-child(3) {
+#menuToggle input:checked ~ span:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-#menuToggle input:checked~span:nth-last-child(2) {
+#menuToggle input:checked ~ span:nth-last-child(2) {
   transform: rotate(-45deg) translate(0, -1px);
 }
-
 
 #menu {
   position: absolute;
@@ -477,9 +462,8 @@ div.task.done {
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
 
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
-
 
 #menu li {
   padding: 10px 0;
@@ -489,7 +473,7 @@ div.task.done {
 /*
  * And let's slide it in from the left
  */
-#menuToggle input:checked~ul {
+#menuToggle input:checked ~ ul {
   transform: none;
 }
 
@@ -506,7 +490,6 @@ div.task.done {
     justify-content: center;
     width: 100%;
     height: 100%;
-
   }
 
   h1 {
@@ -598,7 +581,7 @@ div.task.done {
     padding: 8px 0 8px 0;
     align-items: center;
     justify-content: space-between;
-    transition: opacity .3s linear;
+    transition: opacity 0.3s linear;
     border: 2px solid var(--grey);
     cursor: pointer;
     margin-bottom: 0.75rem;
@@ -626,5 +609,22 @@ div.task.done {
     width: 100%;
     max-width: 100%;
     /* Prevents horizontal overflow */
+  }
+
+  .sign-in-google {
+    margin-top: 1rem;
+    width: 150px;
+    padding: 3em 2em;
+  }
+
+  .sign-in-email {
+    width: 150px;
+
+    padding: 3em 2em;
+  }
+
+  .input-email {
+    width: 150px;
+    transition: border-color 0.25s;
   }
 }
